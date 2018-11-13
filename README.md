@@ -5,3 +5,5 @@ Boilerplate for Electron Apps Using:
 - Redux
 - SemanticUI
 - Webpack
+- Sequelize
+- MySQL
