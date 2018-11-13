@@ -1,15 +1,18 @@
 const electron = require('electron');
+const dialog = require('electron').remote;
 const request = require('request');
+
+const database = require('./database');
 
 const { app, BrowserWindow } = electron;
 
 let mainWindow;
 
-app.on('ready', () => {
+app.on('ready', async () => {
   mainWindow = new BrowserWindow({
     heigth: 786,
     width: 1024,
-    webProferences: { backgroundThrottling : false},
+    webProferences: { backgroundThrottling: false },
     resizable: false,
     maximizable: false,
     show: false

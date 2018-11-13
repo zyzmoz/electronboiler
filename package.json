@@ -19,6 +19,7 @@
     ]
   },
   "dependencies": {
+    "mysql2": "^1.6.4",
     "react": "^16.2.0",
     "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.2.0",
@@ -27,7 +28,8 @@
     "redux": "^3.7.2",
     "request": "^2.88.0",
     "semantic-ui-css": "^2.2.12",
-    "semantic-ui-react": "^0.77.2"
+    "semantic-ui-react": "^0.77.2",
+    "sequelize": "^4.41.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
