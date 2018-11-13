@@ -10,10 +10,11 @@ const User = sequelize.define('user', {
   name: {
     type: Sequelize.STRING,
     allowNull: false  
-  }
+  },
+  password: { type: Sequelize.STRING }
 });
 
-User.sync({force: false}).then(() => {
+User.sync({force: false, alter: true}).then(() => {
 
 });
 

@@ -21,6 +21,9 @@ app.on('ready', async () => {
   mainWindow.maximize();
   mainWindow.show();
 
+  await database.connect();
+  await database.user.findAll();
+
   request('http://localhost:8080', (err, resoponse, body) => {
     if (!err && resoponse.statusCode == 200) {
       mainWindow.loadURL('http://localhost:8080/');
