@@ -8,15 +8,15 @@ module.exports = {
 
   connect: async () => {
 
-    let mysqlConn = mysql.createConnection({
-      host: 'localhost',
-      user: 'root',
-      password: 'root'
-    });
-    await mysqlConn.connect((err) => {
-      mysqlConn.query('create database mydb', (err) => console.log(err));
-      return true
-    });
+    // let mysqlConn = mysql.createConnection({
+    //   host: 'localhost',
+    //   user: 'root',
+    //   password: 'root'
+    // });
+    // await mysqlConn.connect((err) => {
+    //   mysqlConn.query('create database mydb', (err) => console.log(err));
+    //   return true
+    // });
     sequelize
       .authenticate()
       .then(() => {

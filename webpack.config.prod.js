@@ -17,14 +17,14 @@ const htmlPlugin = new HtmlWebPackPlugin({
   template: "./src/index.html",
   filename: "./index.html"
 });
-
+console.log(JSON.stringify(nodeModules));
 module.exports = {
   externals: nodeModules,
   entry: [
     'react-hot-loader/patch',
     './src/index.js'
   ],
-  target: 'electron-renderer',
+  target: 'electron-renderer',  
   module: {    
     rules: [
       {
@@ -63,7 +63,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx']
+    extensions: ['*', '.js', '.jsx']   
   },
   output: {
     path: __dirname + '/dist',

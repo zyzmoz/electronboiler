@@ -33,8 +33,7 @@ const findByField = async (field, value) => {
   })
 }
 
-const save = async (obj) => {
-  
+const save = async (obj) => {  
   if (obj.id) {
     user = await findById(obj.id);
     await user.update(obj);
