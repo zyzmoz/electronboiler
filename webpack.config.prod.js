@@ -4,12 +4,13 @@ const fs = require('fs');
 const path = require('path');
 const { spawn } = require('child_process');
 
+
 const nodeModules = {};
 fs.readdirSync('node_modules')
-  .filter(function(x) {
+  .filter(function (x) {
     return ['.bin'].indexOf(x) === -1;
   })
-  .forEach(function(mod) {
+  .forEach(function (mod) {
     nodeModules[mod] = 'commonjs ' + mod;
   });
 
@@ -17,24 +18,42 @@ const htmlPlugin = new HtmlWebPackPlugin({
   template: "./src/index.html",
   filename: "./index.html"
 });
-console.log(JSON.stringify(nodeModules));
+
 module.exports = {
-  externals: nodeModules,
-  entry: [
+  externals: {...nodeModules},
+
+  entry: [    
     'react-hot-loader/patch',
     './src/index.js'
   ],
-  target: 'electron-renderer',  
-  module: {    
+  target: 'electron-renderer',
+  module: {
     rules: [
+      {
+        test: /.js$/,
+        include: path.resolve(__dirname, 'src'),
+        exclude: /(node_modules|build)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: [
+              'babel-plugin-transform-object-rest-spread',
+              'transform-runtime',
+            ],
+            presets: ['env', 'stage-3'],
+          },
+        },
+      },
+
+
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader']
       },
       {
-        test:/\.css$/,
-        use:['style-loader','css-loader']
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       },
       {
         test: /\.jpe?g$|\.gif$|\.ico$|\.png$|\.svg$/,
@@ -43,15 +62,15 @@ module.exports = {
       {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
         loader: 'file-loader?name=/fonts/[name].[ext]'
-      
+
       }
-  
+
       // the following 3 rules handle font extraction
       // {
       //   test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
       //   loader: 'url-loader?limit=10000&mimetype=application/font-woff'
       // },
-      
+
       // {
       //   test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
       //   loader: 'file-loader'
@@ -63,7 +82,7 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx']   
+    extensions: ['*', '.js', '.jsx']
   },
   output: {
     path: __dirname + '/dist',
@@ -83,8 +102,8 @@ module.exports = {
         ['.'],
         { shell: true, env: process.env, stdio: 'inherit' }
       )
-      .on('close', code => process.exit(0))
-      .on('error', spawnError => console.error(spawnError));
+        .on('close', code => process.exit(0))
+        .on('error', spawnError => console.error(spawnError));
     }
   }
 };

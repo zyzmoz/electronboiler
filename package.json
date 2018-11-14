@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.dev.js --mode development",
     "build-react": "cross-env NODE_ENV=production webpack --config ./webpack.config.prod.js --mode production",
-    "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.prod.js --mode production && cp index.js dist/index.js && electron-packager ./ App --arch ia32 --platform win32 --out ./electron/ --app-version 0.30.2 --overwrite --ignore ./src",
+    "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.prod.js --mode production && cp index.js dist/index.js && electron-packager ./ App --arch ia32 --platform win32 --out ./electron/ --app-version 0.30.2 --overwrite --ignore src --ignore .vscode",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Daniel Cunha",
@@ -48,12 +48,13 @@
     "css-loader": "^0.28.11",
     "electron": "^3.0.9",
     "electron-packager": "^12.2.0",
+    "express": "^4.16.4",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.2.0",
     "react-hot-loader": "^4.3.3",
     "style-loader": "^0.21.0",
     "url-loader": "^1.0.1",
-    "webpack": "^4.12.0",
+    "webpack": "^4.25.1",
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.4"
   }

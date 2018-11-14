@@ -2,6 +2,7 @@ const electron = require('electron');
 const request = require('request');
 const database = require('./database/index');
 
+
 const { app, BrowserWindow } = electron;
 
 let mainWindow;
@@ -31,6 +32,7 @@ app.on('ready', async () => {
     } else {
       mainWindow.setMenu(null);
       mainWindow.loadURL(`file://${__dirname}/dist/index.html`);
+      // mainWindow.loadURL('http://localhost:3000/');
     }
   });
 
